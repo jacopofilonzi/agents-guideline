@@ -13,7 +13,7 @@ My personal guidelines for AI coding agents (Claude Code, Codex, …), as a temp
 Run this from the project root. It downloads the three files into the current folder:
 
 ```sh
-curl -fsSL --remote-name-all "https://raw.githubusercontent.com/jacopofilonzi/agent-guidelines/main/{AGENTS,CLAUDE,STRUCTURE}.md"
+curl -fsSL --remote-name-all "https://raw.githubusercontent.com/jacopofilonzi/agents-guideline/main/{AGENTS,CLAUDE,STRUCTURE}.md"
 ```
 
 On Windows PowerShell write `curl.exe` instead of `curl` (in Windows PowerShell 5.1 `curl` is an alias for `Invoke-WebRequest`). Keep the quotes: curl expands the `{…}` itself.
