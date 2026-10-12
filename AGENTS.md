@@ -4,6 +4,9 @@ Guidelines for AI coding agents (and people) working in this repository.
 What lives where and how the pieces fit together is in [STRUCTURE.md](STRUCTURE.md): read it first,
 instead of re-reading the whole repo.
 
+These guidelines come from a shared template: https://github.com/jacopofilonzi/agents-guideline.
+See "Updating these guidelines" below to align them with the latest version.
+
 <!--
 Template: "Workflow", "Code" and "Testing" are my default style; keep them unless the project needs
 something different. Fill in or delete every <PLACEHOLDER> section, then delete these comments.
@@ -56,6 +59,21 @@ rename or delete a file or module, or change an API endpoint, env var, invariant
 command, update `STRUCTURE.md` / `AGENTS.md` (and `README.md` for user-facing changes) in the same commit
 or right after. Before declaring work done, check that every path, name and value they mention for the
 areas you touched still matches the code.
+
+### Updating these guidelines
+
+When I ask you to check for new guidelines, fetch the latest template from
+https://github.com/jacopofilonzi/agents-guideline (raw files:
+`https://raw.githubusercontent.com/jacopofilonzi/agents-guideline/main/{AGENTS,CLAUDE,STRUCTURE}.md`)
+and align this project's copies with it:
+
+- Bring in new and changed generic rules (workflow, commits, code, testing…) and drop the ones removed
+  upstream, without asking.
+- Keep everything project-specific: filled-in placeholders, invariants, recipes, pitfalls, the whole
+  content of `STRUCTURE.md`, and rules this project added or deliberately changed.
+- Ask only when an upstream change conflicts with the project's current style or guidelines (e.g. it
+  contradicts a project-specific rule or a convention the code follows); list each conflict with both versions.
+- Then summarize what changed and commit it as `docs: sync agent guidelines`.
 
 ## Invariants — don't break these
 

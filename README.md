@@ -27,3 +27,7 @@ Then:
 3. Delete the template comments (`<!-- … -->`).
 
 The files must stay in the project root: Claude Code and other agents only pick up `CLAUDE.md` / `AGENTS.md` from there.
+
+## Update a project's guidelines
+
+Ask the agent to check for new guidelines. Following the "Updating these guidelines" section of `AGENTS.md`, it fetches the latest files from this repo, brings in the generic changes, keeps the project-specific content, and asks only when an upstream change conflicts with the project's current style or rules.
