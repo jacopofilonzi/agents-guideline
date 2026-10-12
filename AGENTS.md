@@ -19,6 +19,11 @@ something different. Fill in or delete every <PLACEHOLDER> section, then delete 
   several files: read what you need, then present the plan (what changes, which files, trade-offs, open
   questions) and wait for my approval before editing. Small, obvious fixes can go straight in. If the plan
   changes significantly along the way, stop and ask again.
+- **Parallelize independent modules.** When the work needs several modules and you judge it feasible, first
+  define and commit the shared constructs yourself (types, interfaces, API contracts, config, shared
+  helpers), then launch several agents in parallel, one per module, each with a clear scope and the files
+  it owns. Afterwards, review and integrate their output and run `make check` on the whole. If the modules
+  are too coupled to split cleanly, do the work sequentially instead.
 - When something is genuinely my decision (UX, user-visible naming, data formats, breaking changes), ask
   instead of guessing. Otherwise pick the sensible default and say what you picked.
 - Run commands from the repo root through the Makefile (`make help` lists them). A new recurring command
