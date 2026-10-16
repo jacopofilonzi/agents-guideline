@@ -141,6 +141,8 @@ and align this project's copies with it:
 
 - Unit tests live next to the code. Test parsing against fixtures copied from real responses, never live
   requests; live checks, if any, are a separate opt-in command (e.g. `make smoke`).
+- Before committing a fixture taken from a real response, replace names, emails, phones and any token or ID
+  that grants access to something on its own. Never commit real user files (documents, tickets, uploads).
 - End-to-end checks: drive the built app with a headless browser (Playwright with the system Chrome/Edge;
   install `playwright-core` in a scratch dir, not in the repo), unless the project has its own e2e setup.
 
@@ -150,6 +152,17 @@ and align this project's copies with it:
 - Versions are `x.y.z`: `x` major (only when I decide), `y` feature, `z` fix. A feature bumps `y` and resets `z`.
 - The version lives in <FILES>: change it only with `<scripts/set-version.sh x.y.z>`, which updates them all.
 - Tags and releases only when I ask.
+- CI runs the checks and tests on every push and pull request, but builds and publishes artifacts (Docker
+  images, binaries, installers) only on a `vX.Y.Z` tag or a manual run, never on a plain push.
+
+## Adding a field to an API model
+
+<!-- Delete if the project has no API shared between backend and frontend. -->
+1. Change the type in <the shared contract file>: the type check then points at every place to update.
+2. Backend: migration (append, never edit a released one), repository, validation schema and routes
+   (create **and** update).
+3. Frontend: every view that shows or edits the model.
+4. Tests for the routes (valid value, invalid value, field missing on old rows); update `STRUCTURE.md`.
 
 ## <Recipe, e.g. "Adding a <thing>">
 
