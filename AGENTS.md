@@ -48,6 +48,12 @@ something different. Fill in or delete every <PLACEHOLDER> section, then delete 
   language) for file operations.
 - Every new env var goes in the config module **and** is documented in `.env.example` (and in
   `docker-compose.yml` if relevant for deployment). Never commit `.env` or secrets.
+- **Never cause real side effects without asking**: payments, bookings, emails, messages to real users,
+  writes to external services. Tests use fakes and fixtures; live checks are read-only. When running the
+  app locally for a check, start from an empty data directory unless told otherwise, and stop it afterwards.
+  <List here the endpoints, commands and functions of this project that act for real.>
+- **Development never uses production credentials or services**: use test accounts, test bots, sandbox
+  keys and a separate database.
 
 ### Commits
 
