@@ -94,7 +94,13 @@ and align this project's copies with it:
 - <Optional services (cache, Redis…) never fail a request: errors degrade to a miss; the server starts without them.>
 - <Bump `<CACHE_KEY_VERSION>` whenever a cached payload shape changes.>
 - <When backend API models change, update the frontend types in the same change.>
-- <Durable data (SQLite, user files) is not cache: formats and IDs stay stable and backward compatible.>
+- **Upgrading production never loses data or stops the service** (keep if the project has durable data:
+  databases, user files). Durable data is not cache: IDs and formats stay backward compatible. Schema
+  changes are migrations appended to <the migrations file>, never edits to one already released (pushed to
+  `main`). A migration that touches existing rows gets a test that builds a database at the previous version
+  with realistic data and migrates it. The app backs up the database before migrating and refuses to start
+  if the backup fails. Anything the operator must do before deploying (env vars, manual steps) goes in the
+  README upgrade notes.
 
 ## Code
 
