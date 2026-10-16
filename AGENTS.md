@@ -110,6 +110,8 @@ and align this project's copies with it:
   (upstream formats, invariants, data layout).
 - Never ignore errors: wrap them with context. No `unwrap()`/`expect()`/unchecked casts on external data
   (network, files, user input).
+- API errors carry a stable machine-readable `code` (and an English message for logs); the UI maps the
+  code to its own text. User-facing text never comes from the backend error.
 - Use the project's logger, never `println!`/`console.log`/`fmt.Println` in core logic.
 - OS-specific code is isolated in one place (`platform/`, `_windows`/`_linux`/`_darwin` files); no
   branching on the OS elsewhere. Build paths with the language's path join, never by concatenating `/`.
@@ -125,7 +127,14 @@ and align this project's copies with it:
 - Every UI string goes through i18n, with both the English and the Italian key (`<DEFAULT_LANG>` is the
   default); the type check must catch a missing key.
 - Svelte 5 runes only (`$state`, `$derived`, `$effect`, `$props`): no legacy stores or `export let`.
-- Tailwind 4: reusable classes are `@utility` in the global CSS.
+  Typed state is `$state<T>(…)` (an annotated `let x: T = $state(…)` narrows to the initial value).
+  Don't name a variable `state` (it clashes with the rune).
+- Tailwind 4: reusable classes are `@utility` in the global CSS. Colours are semantic tokens defined there
+  (`bg-surface`, `text-muted`…), never raw colours in the markup.
+- API models come from the backend contract (shared or generated types): never redeclare them in the UI.
+  Every call goes through one API module (base URL, auth headers, error codes).
+- No external scripts from CDNs unless the platform requires them; libraries are npm packages, and heavy
+  ones are loaded lazily.
 - Never hard-code base paths or the API prefix: build URLs from the shared base constant.
 
 ## Testing
