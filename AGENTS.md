@@ -27,6 +27,12 @@ something different. Fill in or delete every <PLACEHOLDER> section, then delete 
   helpers), then launch several agents in parallel, one per module, each with a clear scope and the files
   it owns. Afterwards, review and integrate their output and run `make check` on the whole. If the modules
   are too coupled to split cleanly, do the work sequentially instead.
+- **Propose an architecture change when something outgrows its start.** A part that began small and
+  simple (e.g. a dashboard in plain HTML for a couple of tasks, a single-file script, a hand-rolled
+  config) may keep gaining responsibilities. When it starts to strain its original approach (state wired
+  by hand, duplicated markup or logic, ever-growing glue code), stop and propose moving to a better fit
+  (e.g. a framework, a proper module layout), with trade-offs and a migration path, instead of piling more
+  onto the simple version. Don't migrate without my approval.
 - When something is genuinely my decision (UX, user-visible naming, data formats, breaking changes), ask
   instead of guessing. Otherwise pick the sensible default and say what you picked.
 - Run commands from the repo root through the Makefile (`make help` lists them). A new recurring command
